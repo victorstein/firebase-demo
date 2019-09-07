@@ -1,24 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Col,
   Row,
   Card,
   CardBody,
   CardHeader,
-  Button
+  Button,
+  Spinner
 } from 'reactstrap'
 import { FaGoogle } from 'react-icons/fa'
 import { Auth, GoogleProvider, Database } from '../utils/firebase'
 
 export default () => {
+  const [loading, setLoading] = useState(false)
 
   const signInWithGoogle = async () => {
-    const { user } = await Auth.signInWithPopup(GoogleProvider)
-    Database.ref(`users/${user.uid}`).update({
-      name: user.displayName,
-      photo: user.photoURL,
-      email: user.email
-    })
+    try {
+      setLoading(true)
+      const { user } = await Auth.signInWithPopup(GoogleProvider)
+      Database.ref(`users/${user.uid}`).update({
+        name: user.displayName,
+        photo: user.photoURL,
+        email: user.email
+      })
+      setLoading(false)
+    } catch (e) {
+      setLoading(false)
+      console.log(e)
+    }
   }
 
   return (
@@ -31,14 +40,18 @@ export default () => {
           </CardHeader>
           <CardBody>
             <Button
-              className='d-flex justify-content-between align-items-center px-5'
+              className={`d-flex justify-content-${loading ? 'center' : 'between'} align-items-center px-5`}
               block
               outline
               color='danger'
               onClick={signInWithGoogle}
+              disabled={loading}
             >
-              <FaGoogle />
-              Iniciar Sesion
+              {
+                loading
+                  ? <Spinner color='danger' />
+                  : <><FaGoogle /> Iniciar Sesion</>
+              }
             </Button>
           </CardBody>
         </Card>

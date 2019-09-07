@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Signup from './views/signup'
 import Users from './views/users'
-import { Container } from 'reactstrap'
+import { Container, Spinner } from 'reactstrap'
 import { Auth } from './utils/firebase'
 import Header from './components/header'
 
 function App () {
 
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(null)
 
   useEffect(() => {
     Auth.onAuthStateChanged((user) => {
@@ -24,9 +24,11 @@ function App () {
       <Header />
       <Container className='d-flex justify-content-center align-items-center vh-100'>
         {
-          loggedIn
-            ? <Users />
-            : <Signup />
+          loggedIn === null
+            ? <Spinner color='danger' />
+            : loggedIn
+              ? <Users />
+              : <Signup />
         }
       </Container>
     </>

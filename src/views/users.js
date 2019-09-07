@@ -2,18 +2,21 @@ import React, { useEffect, useState } from 'react'
 import {
   Row,
   Col,
-  Alert
+  Alert,
+  Spinner
 } from 'reactstrap'
 import UserCard from '../components/userCard'
 import { Database, Auth } from '../utils/firebase'
 
 export default () => {
 
-  const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState(false)
 
   useEffect(() => {
     Database.ref('users').on('value', (data) => {
       setUsers(data.val())
+      console.log(data)
+      console.log(data.val())
     })
     Auth.onAuthStateChanged(data => console.log(data))
   }, [])
@@ -35,11 +38,13 @@ export default () => {
 
   return (
     <Row className='w-100'>
-      <Col>
+      <Col className='d-flex align-items-center justify-content-center'>
         {
-          users
-            ? renderUsers()
-            : <Alert color='danger'>No existen registros de usuarios</Alert>
+          users === null
+            ? <Alert color='danger'>No existen registros de usuarios</Alert>
+            : users === false
+              ? <Spinner color='danger' />
+              : renderUsers()
         }
       </Col>
     </Row>
