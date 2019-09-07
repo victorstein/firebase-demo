@@ -12,7 +12,7 @@ export default ({ username = '', picture='logo192.png', data='' }) => (
         <Media left>
           <Media className='mr-3' style={{ height: '5rem' }} src={picture} alt='img' />
         </Media>
-        <Media body>
+        <Media body style={{ wordBreak: 'break-word' }}>
           <Media heading>
             {username}
           </Media>
