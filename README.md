@@ -12,8 +12,8 @@ JavaScript Standard
 
 ## Built With
 
-* [firebase](https://firebase.google.com/) As Auth, hosting and DB provider
-* [React Native](https://mongoosejs.com/) As the main Framework
+* [Firebase](https://firebase.google.com/) As Auth, hosting and DB provider
+* [React](https://reactjs.org/) As the main Framework
 
 ## Author
 
