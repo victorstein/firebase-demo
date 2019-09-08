@@ -25,7 +25,7 @@ export default () => {
   }
 
   return (
-    <Navbar color='danger' light expand='md'>
+    <Navbar style={{ zIndex: 2 }} color='danger' light expand='md' className='position-relative'>
       <NavbarBrand className='text-white'>Firebase demo</NavbarBrand>
       {
         Auth.currentUser

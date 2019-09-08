@@ -22,10 +22,10 @@ function App () {
   return (
     <>
       <Header />
-      <Container className='d-flex justify-content-center align-items-center vh-100'>
+      <Container className='d-flex justify-content-center vh-100'>
         {
           loggedIn === null
-            ? <Spinner color='danger' />
+            ? <Spinner className='align-self-center' color='danger' />
             : loggedIn
               ? <Users />
               : <Signup />

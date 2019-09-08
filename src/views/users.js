@@ -37,8 +37,8 @@ export default () => {
   }
 
   return (
-    <Row className='w-100'>
-      <Col className='d-flex align-items-center justify-content-center'>
+    <Row className='my-2'>
+      <Col className='d-flex align-items-center justify-content-center flex-column'>
         {
           users === null
             ? <Alert color='danger'>No existen registros de usuarios</Alert>

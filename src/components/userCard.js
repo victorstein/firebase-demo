@@ -6,7 +6,7 @@ import {
 } from 'reactstrap'
 
 export default ({ username = '', picture='logo192.png', data='' }) => (
-  <Card>
+  <Card className='w-100 my-1'>
     <CardBody>
       <Media>
         <Media left>

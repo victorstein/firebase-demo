@@ -32,7 +32,7 @@ export default () => {
 
   return (
     <Row>
-      <Col>
+      <Col className='d-flex align-items-center'>
         <Card>
           <CardHeader>
             <h2>Bienvenido</h2>
